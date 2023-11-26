@@ -175,109 +175,52 @@ namespace StudenInformationSystem.Views
             }
         }
 
+        private async void BTNShow_Click(object sender, EventArgs e)
+        {
+            if (DGVStudents.SelectedRows.Count == 1)
+            {
+                var selectedStudent = (DTOStudentInformation)DGVStudents.SelectedRows[0].DataBoundItem;
+                var student = await studentService.FindById(selectedStudent.ID);
+                if (student != null)
+                {
+                    var subjects = await subjectService.GetByStudent(student.Id);
+                    var course = await courseService.FindByStudent(student.Id);
+                    var @class = await classService.FindByCourse(course.Id);
+                    var enrollment = await enrollmentService.FindByStudent(student.Id);
+
+                    var subjectNames = new List<string>();
+                    foreach (var subject in subjects)
+                    {
+                        subjectNames.Add(subject.Name);
+                    }
+
+                    var studentFullInformation = new DTOStudentInformation
+                    {
+                        ID = student.Id,
+                        Firstname = student.Firstname,
+                        Lastname = student.Lastname,
+                        Age = student.Age,
+                        Gender = student.Gender,
+                        Course = course.CourseName,
+                        Semester = @class.Semester,
+                        Year = @class.Year,
+                        Credits = course.Credits,
+                        EnrollmentId = enrollment.Id,
+                        Subjects = subjectNames
+                    };
+
+                    ShowInformationView view = new ShowInformationView();
+                    view.StudentInformation = studentFullInformation;
+                    view.ShowDialog();
+                }
+            }
+        }
+
+        private void BTNLogout_Click(object sender, EventArgs e)
+        {
+            LoginView view = new LoginView(adminService, classService, courseService, enrollmentService, studentService, subjectService);
+            view.Show();
+            this.Hide();
+        }
     }
 }
-
-
-//if (DGVStudents.SelectedRows.Count == 1)
-//{
-//    var selectedRow = (DTOStudentInformation)DGVStudents.SelectedRows[0].DataBoundItem;
-//    AddStudentView addStudentView = new AddStudentView(adminService, classService, courseService, enrollmentService, studentService, subjectService);
-//    addStudentView.TBFirstname.Text = selectedRow.Firstname;
-//    addStudentView.TBLastname.Text = selectedRow.Lastname;
-//    addStudentView.TBAge.Text = selectedRow.Age.ToString();
-//    addStudentView.CBGender.Text = selectedRow.Gender;
-//    addStudentView.TBCourse.Text = selectedRow.Course;
-//    addStudentView.TBCredits.Text = selectedRow.Credits;
-//    addStudentView.TBYear.Text = selectedRow.Year;
-//    addStudentView.TBSemester.Text = selectedRow.Semester;
-
-//    var studentSubjects = await subjectService.GetByStudent(selectedRow.ID);
-//    foreach (var subject in studentSubjects)
-//    {
-//        addStudentView.ListBoxSubjects.Items.Add(subject.Name);
-//    }
-//    addStudentView.BTNSubmit.Text = "Update";
-
-//    // Removing the event click
-//    //addStudentView.BTNSubmit.Click -= addStudentView.BTNSubmit_Click;
-
-//    if (addStudentView.ShowDialog() == DialogResult.OK)
-//    {
-//        addStudentView.BTNSubmit.Click += async (s, ev) =>
-//        {
-//            var updatedStudent = await studentService.Update(new Student
-//            {
-//                Id = selectedRow.ID,
-//                Firstname = addStudentView.TBFirstname.Text,
-//                Lastname = addStudentView.TBLastname.Text,
-//                Age = int.Parse(addStudentView.TBAge.Text),
-//                Gender = addStudentView.CBGender.Text
-//            });
-
-//            if (updatedStudent.IsSucess)
-//            {
-//                // Updating the course by studentId
-//                var courseId = await courseService.Update(selectedRow.ID, new Course
-//                {
-//                    CourseName = addStudentView.TBCourse.Text,
-//                    Credits = addStudentView.TBCredits.Text,
-//                });
-
-//                // Updating the class by courseId
-//                await classService.Update(courseId, new Class
-//                {
-//                    Semester = addStudentView.TBSemester.Text,
-//                    Year = addStudentView.TBYear.Text,
-//                });
-
-//                var subjectDeleted = await subjectService.Delete(selectedRow.ID);
-//                if (subjectDeleted)
-//                {
-//                    foreach (var item in addStudentView.ListBoxSubjects.Items)
-//                    {
-//                        await subjectService.Add(selectedRow.ID, item.ToString());
-//                    }
-//                    var result = MessageBox.Show(updatedStudent.Message, "Update Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-//                    if (result == DialogResult.OK)
-//                    {
-//                        // Close the current AddStudentView
-//                        addStudentView.Close();
-
-//                        var subjects = new List<string>();
-//                        foreach (var item in addStudentView.ListBoxSubjects.Items)
-//                        {
-//                            subjects.Add(item.ToString());
-//                        }
-
-//                        //updatedStudent.Data = new DTOStudentInformation
-//                        //{
-//                        //    Firstname = addStudentView.TBFirstname.Text,
-//                        //    Lastname = addStudentView.TBLastname.Text,
-//                        //    Age = int.Parse(addStudentView.TBAge.Text),
-//                        //    Gender = addStudentView.CBGender.Text,
-//                        //    Course = addStudentView.TBCourse.Text,
-//                        //    Credits = addStudentView.TBCredits.Text,
-//                        //    Semester = addStudentView.TBSemester.Text,
-//                        //    Year = addStudentView.TBYear.Text,
-//                        //    Subjects = subjects,
-//                        //};
-
-//                        // Create a new AddStudentView with the updated data
-//                        AddStudentView updatedAddStudentView = new AddStudentView(adminService, classService, courseService, enrollmentService, studentService, subjectService);
-//                        await updatedAddStudentView.UpdateData(updatedStudent.Data);
-//                        updatedAddStudentView.BTNSubmit.Text = "Update";
-//                        updatedAddStudentView.ShowDialog();
-
-//                        DGVStudents.Controls.Clear();
-//                        await InitializeGridView();
-//                    }
-//                }
-//            }
-//            MessageBox.Show(updatedStudent.Message, "Failed to Update", MessageBoxButtons.OK, MessageBoxIcon.Error);
-//        };
-//    }
-
-//    // Overriding the event click of submit button in addStudentView
-
-//}

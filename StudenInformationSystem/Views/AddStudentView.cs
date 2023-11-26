@@ -144,29 +144,6 @@ namespace StudenInformationSystem.Views
             }
         }
 
-        //public async Task UpdateData(DTOStudentInformation updatedData)
-        //{
-        //    // Update the controls with the new data
-        //    TBFirstname.Text = updatedData.Firstname;
-        //    TBLastname.Text = updatedData.Lastname;
-        //    TBAge.Text = updatedData.Age.ToString();
-        //    CBGender.Text = updatedData.Gender;
-        //    TBCourse.Text = updatedData.Course;
-        //    TBCredits.Text = updatedData.Credits;
-        //    TBYear.Text = updatedData.Year;
-        //    TBSemester.Text = updatedData.Semester;
-
-        //    // Clear existing items in ListBoxSubjects
-        //    ListBoxSubjects.Items.Clear();
-
-        //    // Add new items from the updatedData
-        //    var studentSubjects = await subjectService.GetByStudent(updatedData.ID);
-        //    foreach (var subject in studentSubjects)
-        //    {
-        //        ListBoxSubjects.Items.Add(subject.Name);
-        //    }
-        //}
-
         private void AddStudentView_Load(object sender, EventArgs e)
         {
             if(selectedStudent != null)

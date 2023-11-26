@@ -17,6 +17,7 @@ namespace StudenInformationSystem.Models.DTOs
         public string Credits {  get; set; }
         public string Semester { get; set; }
         public string Year { get; set; }
+        public int EnrollmentId {  get; set; }
         public List<string> Subjects { get; set; }
     }
 }

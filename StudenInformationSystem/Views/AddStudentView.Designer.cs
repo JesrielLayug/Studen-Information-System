@@ -508,6 +508,7 @@
             this.MinimizeBox = false;
             this.Name = "AddStudentView";
             this.ShowIcon = false;
+            this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Load += new System.EventHandler(this.AddStudentView_Load);
             this.groupBoxBasicInformation.ResumeLayout(false);

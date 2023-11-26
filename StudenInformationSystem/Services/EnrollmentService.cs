@@ -44,5 +44,11 @@ namespace StudenInformationSystem.Services
                 await enrollmentRepository.Delete(studentEnrollment);
             }
         }
+
+        public async Task<Enrollment> FindByStudent(int studentId)
+        {
+            var enrollment = await enrollmentRepository.FindByStudent(studentId);
+            return enrollment;
+        }
     }
 }

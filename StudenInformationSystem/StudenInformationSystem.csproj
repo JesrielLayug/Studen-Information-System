@@ -253,6 +253,12 @@
     <Compile Include="Views\MainView.Designer.cs">
       <DependentUpon>MainView.cs</DependentUpon>
     </Compile>
+    <Compile Include="Views\ShowInformationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\ShowInformationView.Designer.cs">
+      <DependentUpon>ShowInformationView.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Migrations\202311220840072_InitialCreate.resx">
       <DependentUpon>202311220840072_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
@@ -283,6 +289,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Views\MainView.resx">
       <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Views\ShowInformationView.resx">
+      <DependentUpon>ShowInformationView.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\StudenInformationSystem.Models.DTOs.DTOStudentInformation.datasource" />

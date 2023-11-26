@@ -1,4 +1,5 @@
-﻿using System;
+﻿using StudenInformationSystem.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,5 +11,6 @@ namespace StudenInformationSystem.Services.Contracts
     {
         Task<bool> Add(int studentId, int classId);
         Task Delete(int studentId);
+        Task<Enrollment> FindByStudent(int studentId);
     }
 }
