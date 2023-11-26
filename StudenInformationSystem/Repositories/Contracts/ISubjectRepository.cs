@@ -13,5 +13,6 @@ namespace StudenInformationSystem.Repositories.Contracts
         Task<Subject> Update(Subject subject);  
         Task Delete(Subject subject);
         Task<IEnumerable<Subject>> GetByStudent(int studentId);
+        Task<bool> DeleteByStudent(int studentId);
     }
 }

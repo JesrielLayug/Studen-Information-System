@@ -32,6 +32,14 @@ namespace StudenInformationSystem.Repositories
             await db.SaveChangesAsync();
         }
 
+        public async Task<bool> DeleteByStudent(int studentId)
+        {
+            var subjects = await db.Subjects.Where(x => x.StudentId == studentId).ToListAsync();
+            db.Subjects.RemoveRange(subjects);
+            var change = await db.SaveChangesAsync();
+            return change > 0;
+        }
+
         public async Task<IEnumerable<Subject>> GetByStudent(int studentId)
         {
             var subjects = await db.Subjects.Where(s => s.StudentId == studentId).ToListAsync();

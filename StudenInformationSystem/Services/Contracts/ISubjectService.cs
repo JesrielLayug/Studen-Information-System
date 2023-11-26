@@ -10,7 +10,8 @@ namespace StudenInformationSystem.Services.Contracts
     public interface ISubjectService
     {
         Task<bool> Add(int studentId, string subjectName);
-        Task <bool> Delete(int studentId);
+        Task<bool> Delete(int studentId);
         Task<IEnumerable<Subject>> GetByStudent(int studentId);
+        Task<bool> Update(int studentId, IEnumerable<string> subjects);
     }
 }

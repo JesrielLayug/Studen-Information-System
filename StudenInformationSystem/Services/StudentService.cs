@@ -67,6 +67,12 @@ namespace StudenInformationSystem.Services
             }
         }
 
+        public async Task<Student> FindById(int id)
+        {
+            var student = await studentRepository.FindById(id);
+            return student;
+        }
+
         public async Task<IEnumerable<Student>> GetAll()
         {
             try

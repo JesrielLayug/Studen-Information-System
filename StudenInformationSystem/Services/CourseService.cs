@@ -51,6 +51,12 @@ namespace StudenInformationSystem.Services
             catch { throw; }
         }
 
+        public async Task<Course> FindByStudent(int studentId)
+        {
+            var course = await courseRepository.FindByStudent(studentId);
+            return course;
+        }
+
         public async Task<IEnumerable<Course>> GetAll()
         {
             try

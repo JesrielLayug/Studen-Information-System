@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace StudenInformationSystem.Services
 {
@@ -59,5 +60,37 @@ namespace StudenInformationSystem.Services
             }
         }
 
+        public async Task<bool> Update(int studentId, IEnumerable<string> subjects)
+        {
+            using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+            {
+                try
+                {
+                    var isEmptySubject = await subjectRepository.DeleteByStudent(studentId);
+
+                    if (isEmptySubject)
+                    {
+                        foreach (var subject in subjects)
+                        {
+                            await subjectRepository.Add(new Subject
+                            {
+                                StudentId = studentId,
+                                Name = subject
+                            });
+                        }
+
+                        scope.Complete(); // Mark the transaction as complete if everything is successful
+                        return true;
+                    }
+
+                    return false;
+                }
+                catch (Exception ex)
+                {
+                    // Handle or log the exception
+                    return false;
+                }
+            }
+        }
     }
 }

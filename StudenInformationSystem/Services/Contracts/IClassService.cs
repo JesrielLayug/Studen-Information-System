@@ -13,5 +13,6 @@ namespace StudenInformationSystem.Services.Contracts
         Task<IEnumerable<Class>> GetAll();
         Task Delete(int courseId);
         Task<bool> Update(int courseId, Class courseClass);
+        Task<Class> FindByCourse(int courseId);
     }
 }

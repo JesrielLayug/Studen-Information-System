@@ -53,6 +53,12 @@ namespace StudenInformationSystem.Services
             }
         }
 
+        public async Task<Class> FindByCourse(int courseId)
+        {
+            var classCourse = await classRepository.FindByCourse(courseId);
+            return classCourse;
+        }
+
         public async Task<IEnumerable<Class>> GetAll()
         {
             try

@@ -24,6 +24,8 @@ namespace StudenInformationSystem.Views
         private readonly ISubjectService subjectService;
 
         public event EventHandler StudentIsAdded;
+        public event EventHandler StudentIsUpdated;
+        public DTOStudentInformation selectedStudent { get; set; }
 
         public AddStudentView(IAdminService adminService, IClassService classService, ICourseService courseService,
                         IEnrollmentService enrollmentService, IStudentService studentService, ISubjectService subjectService)
@@ -60,24 +62,79 @@ namespace StudenInformationSystem.Views
                 && !string.IsNullOrEmpty(TBCredits.Text) && !string.IsNullOrEmpty(TBSemester.Text) && !string.IsNullOrEmpty(TBCourse.Text)
                 && ListBoxSubjects.Items.Count != 0)
             {
-                var studentAdded = await studentService.Add(TBFirstname.Text, TBLastname.Text, CBGender.Text, int.Parse(TBAge.Text));
-                var courseAdded = await courseService.Add(TBCourse.Text, TBCredits.Text, studentAdded.Id);
-                var classAdded = await classService.Add(courseAdded.Id, TBSemester.Text, TBYear.Text);
-
-                foreach (var item in ListBoxSubjects.Items)
+                // Check if the selected student from grid is null
+                if(selectedStudent == null)
                 {
-                    await subjectService.Add(studentAdded.Id, item.ToString());
-                }
+                    // Create the student if it does not exist
+                    var studentAdded = await studentService.Add(TBFirstname.Text, TBLastname.Text, CBGender.Text, int.Parse(TBAge.Text));
+                    var courseAdded = await courseService.Add(TBCourse.Text, TBCredits.Text, studentAdded.Id);
+                    var classAdded = await classService.Add(courseAdded.Id, TBSemester.Text, TBYear.Text);
 
-                if (studentAdded != null && courseAdded != null && classAdded != null)
-                {
-                    await enrollmentService.Add(studentAdded.Id, classAdded.Id);
-                    DialogResult result = MessageBox.Show("Successfully register the student.", "Register Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    
-                    if(result == DialogResult.OK)
+                    foreach (var item in ListBoxSubjects.Items)
                     {
-                        StudentIsAdded?.Invoke(this, EventArgs.Empty);
-                        this.Close();
+                        await subjectService.Add(studentAdded.Id, item.ToString());
+                    }
+
+                    if (studentAdded != null && courseAdded != null && classAdded != null)
+                    {
+                        await enrollmentService.Add(studentAdded.Id, classAdded.Id);
+                        DialogResult result = MessageBox.Show("Successfully register the student.", "Register Complete", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        if (result == DialogResult.OK)
+                        {
+                            StudentIsAdded?.Invoke(this, EventArgs.Empty);
+                            this.Close();
+                        }
+                    }
+                }
+                else
+                {
+                    // Update the student if it exist
+                    var updateStudent = await studentService.Update(new Student
+                    {
+                        Id = selectedStudent.ID,
+                        Firstname = TBFirstname.Text,
+                        Lastname = TBLastname.Text,
+                        Age = int.Parse(TBAge.Text),
+                        Gender = CBGender.Text,
+                    });
+
+                    if (updateStudent.IsSucess)
+                    {
+                        // Updating the student course
+                        var courseId = await courseService.Update(selectedStudent.ID, new Course
+                        {
+                            CourseName = TBCourse.Text,
+                            StudentId = selectedStudent.ID,
+                            Credits = TBCredits.Text,
+                        });
+
+                        // Updating the student class
+                        var isClassUpdated = await classService.Update(courseId, new Class
+                        {
+                            CourseId = courseId,
+                            Year = TBYear.Text,
+                            Semester = TBSemester.Text,
+                        });
+
+                        // Updating the student subjects
+                        var subjects = ListBoxSubjects.Items.Cast<string>();
+                        var isSubjectsUpdated = await subjectService.Update(selectedStudent.ID, subjects);
+
+                        // Checks if updating the class and subjects are successful
+                        if (isClassUpdated && isSubjectsUpdated)
+                        {
+                            var result = MessageBox.Show("Successfully updated all the student information", "Update Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            if(result == DialogResult.OK)
+                            {
+                                StudentIsUpdated?.Invoke(this, EventArgs.Empty);
+                                this.Close();
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show("Failed to update the student.", "Update Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
                 }
             }
@@ -87,26 +144,45 @@ namespace StudenInformationSystem.Views
             }
         }
 
-        public async Task UpdateData(DTOStudentInformation updatedData)
+        //public async Task UpdateData(DTOStudentInformation updatedData)
+        //{
+        //    // Update the controls with the new data
+        //    TBFirstname.Text = updatedData.Firstname;
+        //    TBLastname.Text = updatedData.Lastname;
+        //    TBAge.Text = updatedData.Age.ToString();
+        //    CBGender.Text = updatedData.Gender;
+        //    TBCourse.Text = updatedData.Course;
+        //    TBCredits.Text = updatedData.Credits;
+        //    TBYear.Text = updatedData.Year;
+        //    TBSemester.Text = updatedData.Semester;
+
+        //    // Clear existing items in ListBoxSubjects
+        //    ListBoxSubjects.Items.Clear();
+
+        //    // Add new items from the updatedData
+        //    var studentSubjects = await subjectService.GetByStudent(updatedData.ID);
+        //    foreach (var subject in studentSubjects)
+        //    {
+        //        ListBoxSubjects.Items.Add(subject.Name);
+        //    }
+        //}
+
+        private void AddStudentView_Load(object sender, EventArgs e)
         {
-            // Update the controls with the new data
-            TBFirstname.Text = updatedData.Firstname;
-            TBLastname.Text = updatedData.Lastname;
-            TBAge.Text = updatedData.Age.ToString();
-            CBGender.Text = updatedData.Gender;
-            TBCourse.Text = updatedData.Course;
-            TBCredits.Text = updatedData.Credits;
-            TBYear.Text = updatedData.Year;
-            TBSemester.Text = updatedData.Semester;
-
-            // Clear existing items in ListBoxSubjects
-            ListBoxSubjects.Items.Clear();
-
-            // Add new items from the updatedData
-            var studentSubjects = await subjectService.GetByStudent(updatedData.ID);
-            foreach (var subject in studentSubjects)
+            if(selectedStudent != null)
             {
-                ListBoxSubjects.Items.Add(subject.Name);
+                TBFirstname.Text = selectedStudent.Firstname;
+                TBLastname.Text= selectedStudent.Lastname;
+                TBAge.Text = selectedStudent.Age.ToString();
+                CBGender.Text = selectedStudent.Gender;
+                TBCourse.Text = selectedStudent.Course;
+                TBCredits.Text = selectedStudent.Credits;
+                TBSemester.Text = selectedStudent.Semester;
+                TBYear.Text = selectedStudent.Year;
+                foreach(var item in selectedStudent.Subjects)
+                {
+                    ListBoxSubjects.Items.Add(item);
+                }
             }
         }
     }
