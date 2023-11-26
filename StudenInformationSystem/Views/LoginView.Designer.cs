@@ -146,10 +146,10 @@
             // 
             // pictureBoxbg
             // 
-            this.pictureBoxbg.Image = global::StudenInformationSystem.Properties.Resources.bg;
-            this.pictureBoxbg.Location = new System.Drawing.Point(100, 113);
+            this.pictureBoxbg.Image = global::StudenInformationSystem.Properties.Resources.login_bg;
+            this.pictureBoxbg.Location = new System.Drawing.Point(108, 113);
             this.pictureBoxbg.Name = "pictureBoxbg";
-            this.pictureBoxbg.Size = new System.Drawing.Size(175, 151);
+            this.pictureBoxbg.Size = new System.Drawing.Size(156, 151);
             this.pictureBoxbg.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBoxbg.TabIndex = 7;
             this.pictureBoxbg.TabStop = false;

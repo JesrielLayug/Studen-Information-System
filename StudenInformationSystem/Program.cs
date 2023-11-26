@@ -83,7 +83,7 @@ namespace StudenInformationSystem
                 var studentService = ServiceLocator.GetService<IStudentService>();
                 var subjectService = ServiceLocator.GetService<ISubjectService>();
 
-                Application.Run(new MainView(adminService, classService, courseService, enrollmentService, studentService, subjectService));
+                Application.Run(new LoginView(adminService, classService, courseService, enrollmentService, studentService, subjectService));
             }
 
 

@@ -29,14 +29,15 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainView));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panelTop = new System.Windows.Forms.Panel();
+            this.BTNLogout = new Guna.UI.WinForms.GunaButton();
             this.labelTagline = new System.Windows.Forms.Label();
             this.labelAdmin = new System.Windows.Forms.Label();
             this.DGVStudents = new Guna.UI.WinForms.GunaDataGridView();
@@ -54,7 +55,6 @@
             this.semesterDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yearDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dTOStudentInformationBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.BTNLogout = new Guna.UI.WinForms.GunaButton();
             this.panelTop.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DGVStudents)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dTOStudentInformationBindingSource)).BeginInit();
@@ -72,6 +72,33 @@
             this.panelTop.Name = "panelTop";
             this.panelTop.Size = new System.Drawing.Size(1258, 78);
             this.panelTop.TabIndex = 6;
+            // 
+            // BTNLogout
+            // 
+            this.BTNLogout.AnimationHoverSpeed = 0.07F;
+            this.BTNLogout.AnimationSpeed = 0.03F;
+            this.BTNLogout.BackColor = System.Drawing.Color.Transparent;
+            this.BTNLogout.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.BTNLogout.BorderColor = System.Drawing.Color.Black;
+            this.BTNLogout.DialogResult = System.Windows.Forms.DialogResult.None;
+            this.BTNLogout.FocusedColor = System.Drawing.Color.Empty;
+            this.BTNLogout.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.BTNLogout.ForeColor = System.Drawing.Color.White;
+            this.BTNLogout.Image = null;
+            this.BTNLogout.ImageSize = new System.Drawing.Size(20, 20);
+            this.BTNLogout.Location = new System.Drawing.Point(1136, 13);
+            this.BTNLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.BTNLogout.Name = "BTNLogout";
+            this.BTNLogout.OnHoverBaseColor = System.Drawing.Color.Teal;
+            this.BTNLogout.OnHoverBorderColor = System.Drawing.Color.Black;
+            this.BTNLogout.OnHoverForeColor = System.Drawing.Color.White;
+            this.BTNLogout.OnHoverImage = null;
+            this.BTNLogout.OnPressedColor = System.Drawing.Color.Black;
+            this.BTNLogout.Size = new System.Drawing.Size(110, 50);
+            this.BTNLogout.TabIndex = 12;
+            this.BTNLogout.Text = "Logout";
+            this.BTNLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BTNLogout.Click += new System.EventHandler(this.BTNLogout_Click);
             // 
             // labelTagline
             // 
@@ -101,10 +128,10 @@
             this.DGVStudents.AllowUserToDeleteRows = false;
             this.DGVStudents.AllowUserToResizeColumns = false;
             this.DGVStudents.AllowUserToResizeRows = false;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVStudents.AlternatingRowsDefaultCellStyle = dataGridViewCellStyle1;
             this.DGVStudents.AutoGenerateColumns = false;
             this.DGVStudents.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DGVStudents.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
@@ -112,14 +139,14 @@
             this.DGVStudents.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.DGVStudents.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleHorizontal;
             this.DGVStudents.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVStudents.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.DGVStudents.ColumnHeadersHeight = 35;
             this.DGVStudents.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.DGVStudents.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -133,14 +160,14 @@
             this.semesterDataGridViewTextBoxColumn,
             this.yearDataGridViewTextBoxColumn});
             this.DGVStudents.DataSource = this.dTOStudentInformationBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.DGVStudents.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(255)))));
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(71)))), ((int)(((byte)(69)))), ((int)(((byte)(94)))));
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.DGVStudents.DefaultCellStyle = dataGridViewCellStyle4;
             this.DGVStudents.EnableHeadersVisualStyles = false;
             this.DGVStudents.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(231)))), ((int)(((byte)(229)))), ((int)(((byte)(255)))));
             this.DGVStudents.Location = new System.Drawing.Point(22, 160);
@@ -148,19 +175,19 @@
             this.DGVStudents.Name = "DGVStudents";
             this.DGVStudents.ReadOnly = true;
             this.DGVStudents.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.DGVStudents.RowHeadersDefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.DGVStudents.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.DGVStudents.RowHeadersVisible = false;
             this.DGVStudents.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.DGVStudents.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.TopCenter;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Poppins", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.DGVStudents.RowsDefaultCellStyle = dataGridViewCellStyle6;
             this.DGVStudents.RowTemplate.Height = 50;
             this.DGVStudents.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.DGVStudents.Size = new System.Drawing.Size(1208, 584);
@@ -200,7 +227,8 @@
             this.BTNShow.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNShow.ForeColor = System.Drawing.Color.White;
             this.BTNShow.Image = ((System.Drawing.Image)(resources.GetObject("BTNShow.Image")));
-            this.BTNShow.ImageSize = new System.Drawing.Size(20, 20);
+            this.BTNShow.ImageAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.BTNShow.ImageSize = new System.Drawing.Size(15, 15);
             this.BTNShow.Location = new System.Drawing.Point(336, 95);
             this.BTNShow.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BTNShow.Name = "BTNShow";
@@ -212,6 +240,7 @@
             this.BTNShow.Size = new System.Drawing.Size(178, 50);
             this.BTNShow.TabIndex = 11;
             this.BTNShow.Text = "Show Information";
+            this.BTNShow.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.BTNShow.Click += new System.EventHandler(this.BTNShow_Click);
             // 
             // BTNDelete
@@ -226,7 +255,7 @@
             this.BTNDelete.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNDelete.ForeColor = System.Drawing.Color.White;
             this.BTNDelete.Image = ((System.Drawing.Image)(resources.GetObject("BTNDelete.Image")));
-            this.BTNDelete.ImageSize = new System.Drawing.Size(20, 20);
+            this.BTNDelete.ImageSize = new System.Drawing.Size(15, 15);
             this.BTNDelete.Location = new System.Drawing.Point(220, 95);
             this.BTNDelete.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BTNDelete.Name = "BTNDelete";
@@ -252,7 +281,7 @@
             this.BTNEdit.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNEdit.ForeColor = System.Drawing.Color.White;
             this.BTNEdit.Image = ((System.Drawing.Image)(resources.GetObject("BTNEdit.Image")));
-            this.BTNEdit.ImageSize = new System.Drawing.Size(20, 20);
+            this.BTNEdit.ImageSize = new System.Drawing.Size(15, 15);
             this.BTNEdit.Location = new System.Drawing.Point(122, 95);
             this.BTNEdit.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BTNEdit.Name = "BTNEdit";
@@ -278,7 +307,7 @@
             this.BTNAdd.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.BTNAdd.ForeColor = System.Drawing.Color.White;
             this.BTNAdd.Image = ((System.Drawing.Image)(resources.GetObject("BTNAdd.Image")));
-            this.BTNAdd.ImageSize = new System.Drawing.Size(20, 20);
+            this.BTNAdd.ImageSize = new System.Drawing.Size(15, 15);
             this.BTNAdd.Location = new System.Drawing.Point(24, 95);
             this.BTNAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.BTNAdd.Name = "BTNAdd";
@@ -295,8 +324,8 @@
             // iDDataGridViewTextBoxColumn
             // 
             this.iDDataGridViewTextBoxColumn.DataPropertyName = "ID";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            this.iDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            this.iDDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.iDDataGridViewTextBoxColumn.HeaderText = "ID";
             this.iDDataGridViewTextBoxColumn.Name = "iDDataGridViewTextBoxColumn";
             this.iDDataGridViewTextBoxColumn.ReadOnly = true;
@@ -361,33 +390,6 @@
             // dTOStudentInformationBindingSource
             // 
             this.dTOStudentInformationBindingSource.DataSource = typeof(StudenInformationSystem.Models.DTOs.DTOStudentInformation);
-            // 
-            // BTNLogout
-            // 
-            this.BTNLogout.AnimationHoverSpeed = 0.07F;
-            this.BTNLogout.AnimationSpeed = 0.03F;
-            this.BTNLogout.BackColor = System.Drawing.Color.Transparent;
-            this.BTNLogout.BaseColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.BTNLogout.BorderColor = System.Drawing.Color.Black;
-            this.BTNLogout.DialogResult = System.Windows.Forms.DialogResult.None;
-            this.BTNLogout.FocusedColor = System.Drawing.Color.Empty;
-            this.BTNLogout.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BTNLogout.ForeColor = System.Drawing.Color.White;
-            this.BTNLogout.Image = null;
-            this.BTNLogout.ImageSize = new System.Drawing.Size(20, 20);
-            this.BTNLogout.Location = new System.Drawing.Point(1136, 13);
-            this.BTNLogout.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.BTNLogout.Name = "BTNLogout";
-            this.BTNLogout.OnHoverBaseColor = System.Drawing.Color.Teal;
-            this.BTNLogout.OnHoverBorderColor = System.Drawing.Color.Black;
-            this.BTNLogout.OnHoverForeColor = System.Drawing.Color.White;
-            this.BTNLogout.OnHoverImage = null;
-            this.BTNLogout.OnPressedColor = System.Drawing.Color.Black;
-            this.BTNLogout.Size = new System.Drawing.Size(110, 50);
-            this.BTNLogout.TabIndex = 12;
-            this.BTNLogout.Text = "Logout";
-            this.BTNLogout.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.BTNLogout.Click += new System.EventHandler(this.BTNLogout_Click);
             // 
             // MainView
             // 
