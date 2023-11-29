@@ -52,14 +52,12 @@ namespace StudenInformationSystem.Views
 
         private void AddStudentView_StudentIsUpdated(object sender, EventArgs e)
         {
-            DGVStudents.Controls.Clear();
-            InitializeGridView().Wait();
+            RefreshGrid();
         }
 
         private void AddStudentView_StudentIsAdded(object sender, EventArgs e)
         {
-            DGVStudents.Controls.Clear();
-            InitializeGridView().Wait();
+            RefreshGrid();
         }
 
         public async Task InitializeGridView()
@@ -76,7 +74,11 @@ namespace StudenInformationSystem.Views
 
                     if (studentInformations.Count() != 0)
                     {
-                        DGVStudents.DataSource = studentInformations;
+                        LinkedList<DTOStudentInformation> linkedList = new LinkedList<DTOStudentInformation>(studentInformations);
+
+                        ShuffleLinkedList(linkedList);
+
+                        DGVStudents.DataSource = linkedList.ToList();
                     }
                     else
                     {
@@ -95,6 +97,7 @@ namespace StudenInformationSystem.Views
             }
 
         }
+
 
         private void DGVStudents_CellValueChanged(object sender, DataGridViewCellEventArgs e)
         {
@@ -221,6 +224,39 @@ namespace StudenInformationSystem.Views
             LoginView view = new LoginView(adminService, classService, courseService, enrollmentService, studentService, subjectService);
             view.Show();
             this.Hide();
+        }
+
+        private static void ShuffleLinkedList<T>(LinkedList<T> list)
+        {
+            Random random = new Random();
+            T[] array = list.ToArray();
+
+            for (int i = array.Length - 1; i > 0; i--)
+            {
+                int randomIndex = random.Next(0, i + 1);
+
+                // Swap values between current index and randomly selected index
+                T temp = array[i];
+                array[i] = array[randomIndex];
+                array[randomIndex] = temp;
+            }
+
+            list.Clear();
+            foreach (T item in array)
+            {
+                list.AddLast(item);
+            }
+        }
+
+        private async void RefreshGrid()
+        {
+            DGVStudents.Controls.Clear();
+            await InitializeGridView();
+        }
+
+        private void BTNShuffle_Click(object sender, EventArgs e)
+        {
+            RefreshGrid();
         }
     }
 }
